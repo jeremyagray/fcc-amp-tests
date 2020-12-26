@@ -1,0 +1,13 @@
+# Emacs.
+*~
+
+# Node/npm.
+.DS_Store
+.env
+.nyc_output/
+build
+coverage/
+dist/*.js
+dist/*.LICENSE.txt
+node_modules
+npm-debug.log
