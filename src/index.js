@@ -1,5 +1,7 @@
 // Use mocha for running tests.
 import {mocha} from 'mocha';
+// import {Mocha} from 'mocha';
+// import 'mocha';
 
 // Use chai expect.
 import * as chai from 'chai';
@@ -39,7 +41,7 @@ function runTests() {
 
   // Delete old mocha div, if present.
   if (document.getElementById('mocha') !== null) {
-    document.getElementById('mocha').deleteElement();
+    document.getElementById('mocha').remove();
   }
 
   // Create a new, initially invisible, mocha div.
@@ -49,6 +51,7 @@ function runTests() {
   document.body.appendChild(mochaDiv);
 
   // Set up mocha.
+  // let mocha = new Mocha();
   mocha.setup('bdd');
   mocha.checkLeaks();
 

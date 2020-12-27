@@ -24,7 +24,8 @@
     "jsdoc": "^3.6.0",
     "nyc": "^15.1.0",
     "webpack": "^5.11.0",
-    "webpack-cli": "^4.3.0"
+    "webpack-cli": "^4.3.0",
+    "webpack-dev-server": "^3.11.0"
   },
   "directories": {
     "test": "tests"
@@ -49,6 +50,7 @@
     "docs": "jsdoc -c ./.jsdoc.json",
     "lint": "eslint '**/*.js'",
     "lint-fix": "eslint '**/*.js' --fix",
+    "start": "webpack serve",
     "test": "mocha --recursive --exit tests"
   },
   "version": "0.0.1"

@@ -4,6 +4,9 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
+  'devServer': {
+    'contentBase': './dist',
+  },
   'entry': './src/index.js',
   'output': {
     'filename': 'main.js',
