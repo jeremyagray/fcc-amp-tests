@@ -2,22 +2,72 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Mocha Tests</title>
+    <title>FCC AMP Testing Bundle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css" type="text/css" />
+    <link rel="stylesheet" href="mocha.css" type="text/css" />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
-    <div id="mocha"></div>
+    <div class="testControls zindex-fixed" id="testControlsHamburger">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#testControls" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+	<span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+    <div class="testControls container zindex-dropdown" id="testControls">
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/8.1.3/mocha.min.js" integrity="sha512-hGwiMzb1sPlUdTq+tk0B6dbK7Y1fbmmjwc1BU23FILz2JNhPxcT0iKkKOWgPbVCRTPaXrF+yhiPFize6CfbZTw==" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/4.2.0/chai.min.js" integrity="sha512-x3BwhuxT44pOQZanacQyDnrB2r1L1AUfjUaefYArTHR9sHEvvy3NSnnm5Z7GAl5YPc3+GEWFT0S34obDSzUvaQ==" crossorigin="anonymous"></script> -->
-    <!-- <script src="https://unpkg.com/chai-http@4.3.0/dist/chai-http.js"></script> -->
-    <!-- <script src="https://unpkg.com/chai-datetime@1.7.0"></script> -->
+      <div class="testControls row align-items-center justify-content-center" id="testControlsSelectProjectFormLabelRow">
+	<label class="testControls" id="testControlsSelectProjectFormLabel" for="testControlsSelectProjectFormSelect">Select Project:</label>
+      </div>
+      <div class="testControls row align-items-center justify-content-center p-2" id="testControlsSelectProjectFormLabelForm">
+	<select class="testControls" name="testControlsSelectProjectFormSelect" id="testControlsSelectProjectFormSelect">
+	  <option value="timestamp">Timestamp</option>
+	  <option value="headerParser">Header Parser</option>
+	  <option value="urlShortener">URL Shortener</option>
+	  <option value="exerciseTracker">Exercise Tracker</option>
+	  <option value="fileMetadata">File Metadata</option>
+	</select>
+      </div>
 
-    <!-- <script src="src/timestamp.js"></script> -->
+      <div class="testControls row align-items-center justify-content-center p-2" id="testControlsRunner">
+	<div class="testControls col" id="testControlsButtons">
+	  <button type="button" class="btn btn-primary btn-block testControls" id="testControlsRunTests">Run Tests</button>
+	  <button type="button" class="btn btn-secondary btn-block testControls" id="testControlsTestResults">Test Results</button>
+	</div>
+
+	<div class="testControls col" id="testControlsLegendCol">
+	  <div class="testControls container" id="testControlsLegendContainer">
+	    <div class="testControls row" id="testControlsTestsFailed">
+	      <div class="testControls" id="testControlsTestsFailedColor"></div>
+	      <div class="testControls" id="testControlsTestsFailedLabel">
+		Test(s) Failed
+	      </div>
+	    </div>
+
+	    <div class="testControls row" id="testControlsTestsPassing">
+	      <div class="testControls" id="testControlsTestsPassingColor"></div>
+	      <div class="testControls" id="testControlsTestsPassingLabel">
+		Tests Passing
+	      </div>
+	    </div>
+
+	    <div class="testControls row" id="testControlsTestsExecuting">
+	      <div class="testControls" id="testControlsTestsExecutingColor"></div>
+	      <div class="testControls" id="testControlsTestsExecutingLabel">
+		Tests Executing
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+      </div>
+
+      <div class="testControls row align-items-center justify-content-center p-2" id="testControlsHelp">
+	<a href="https://forum.freecodecamp.org/">Get Help</a>
+      </div>
+    </div>
+    <!-- <div id="mocha"> -->
+    <!-- </div> -->
     <script src="main.js"></script>
-    <!-- <script> -->
-    <!--   alert(window.location.href); -->
-    <!-- </script> -->
   </body>
 </html>

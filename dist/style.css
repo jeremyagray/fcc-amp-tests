@@ -1,0 +1,55 @@
+div#testControlsHamburger {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+}
+
+div#testControls {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 250px;
+    width: 400px;
+    background-color: yellow;
+    /* border: 2px solid black; */
+}
+
+div#testControlsButtons, div#testControlsLegend {
+    /* display: inline-block; */
+}
+
+div#testControlsTestsFailed, div#testControlsTestsPassing, div#testControlsTestsExecuting {
+}
+
+div#testControlsTestsFailedLabel {
+    /* display: inline-block; */
+}
+
+div#testControlsTestsFailedColor {
+    /* display: inline-block; */
+    height: 20px;
+    width: 20px;
+    background-color: red;
+}
+
+div#testControlsTestsPassingLabel {
+    /* display: inline-block; */
+}
+
+div#testControlsTestsPassingColor {
+    /* display: inline-block; */
+    height: 20px;
+    width: 20px;
+    background-color: green;
+}
+
+div#testControlsTestsExecutingLabel {
+    /* display: inline-block; */
+}
+
+div#testControlsTestsExecutingColor {
+    /* display: inline-block; */
+    height: 20px;
+    width: 20px;
+    background-color: orange;
+}

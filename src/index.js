@@ -13,23 +13,74 @@ chai.use(chaiHttp);
 const chaiDate = require('chai-datetime');
 chai.use(chaiDate);
 
-(function runTests() {
-  // Page location for API calls.
-  // const url = window.location.href;
-  const url = 'http://localhost:3000';
+// function buildOverlay() {
+//   const mochaDiv = document
+//         .createElement('div')
+//         .setAttribute('id', 'mocha');
+//   const testControlsHamburgerDiv = document
+//         .createElement('div')
+//         .setAttribute('id', 'testControlsHamburger');
+//   const testControlsDiv = document
+//         .createElement('div')
+//         .setAttribute('id', 'testControls');
+
+//   document.body.appendChild(mochaDiv);
+// }
+
+function runTests() {
+  // Test definition functions.
+  const tests = {
+    'timestamp': timestampTests,
+    'headerParser': headerParserTests,
+    'urlShortener': urlShortenerTests,
+    'exerciseTracker': exerciseTrackerTests,
+    'fileMetadata': fileMetadataTests
+  };
+
+  // Delete old mocha div, if present.
+  if (document.getElementById('mocha') !== null) {
+    document.getElementById('mocha').deleteElement();
+  }
+
+  // Create a new, initially invisible, mocha div.
+  const mochaDiv = document.createElement('div');
+  mochaDiv.setAttribute('id', 'mocha');
+  mochaDiv.style.visibility = 'hidden';
+  document.body.appendChild(mochaDiv);
 
   // Set up mocha.
   mocha.setup('bdd');
   mocha.checkLeaks();
 
+  // Get the project to test.
+  const projectSelect = document
+    .getElementById('testControlsSelectProjectFormSelect');
+  const project = projectSelect.options[projectSelect.selectedIndex].value;
+
+  // Page location for API calls.
+  // const url = window.location.href;
+  const url = 'http://localhost:3000';
+
   // Define tests for selected project.
-  timeStampTests(url);
+  tests[project](url);
 
   // Run tests.
   mocha.run();
-})();
+}
 
-function timeStampTests(url) {
+function toggleResultsVisibility() {
+  // Make the results div visible, if it exists.
+  if (document.getElementById('mocha') !== null) {
+    console.log(document.getElementById('mocha').style.visibility);
+    if (document.getElementById('mocha').style.visibility === 'visible') {
+      document.getElementById('mocha').style.visibility = 'hidden';
+    } else {
+      document.getElementById('mocha').style.visibility = 'visible';
+    }
+  }
+}
+
+function timestampTests(url) {
   describe('FCC tests', async function() {
     describe('API and Microservices Projects', async function() {
       describe('Time Stamp Microservice', async function() {
@@ -247,22 +298,94 @@ function timeStampTests(url) {
   });
 }
 
-// function exerciseTrackerTests(url) {
-//   describe('FCC tests', async function() {
-//     describe('API and Microservices Projects', async function() {
-//       describe('Exercise Tracker Microservice', async function() {
-//         describe('URL tests', async function() {
-//           it('project should be yours', async function() {
-//             try {
-//               const fccURL = /.*\/exercise-tracker\.freecodecamp\.rocks/;
-//               expect(url).to.not.match(fccURL, 'Users should create their own project.');
-//             } catch (error) {
-//               console.log(error);
-//               throw error;
-//             }
-//           });
-//         });
-//       });
-//     });
-//   });
-// }
+function headerParserTests(url) {
+  describe('FCC tests', async function() {
+    describe('API and Microservices Projects', async function() {
+      describe('Exercise Tracker Microservice', async function() {
+        describe('URL tests', async function() {
+          it('project should be yours', async function() {
+            try {
+              const fccURL = /.*\/exercise-tracker\.freecodecamp\.rocks/;
+              expect(url).to.not.match(fccURL, 'Users should create their own project.');
+            } catch (error) {
+              console.log(error);
+              throw error;
+            }
+          });
+        });
+      });
+    });
+  });
+}
+
+function urlShortenerTests(url) {
+  describe('FCC tests', async function() {
+    describe('API and Microservices Projects', async function() {
+      describe('Exercise Tracker Microservice', async function() {
+        describe('URL tests', async function() {
+          it('project should be yours', async function() {
+            try {
+              const fccURL = /.*\/exercise-tracker\.freecodecamp\.rocks/;
+              expect(url).to.not.match(fccURL, 'Users should create their own project.');
+            } catch (error) {
+              console.log(error);
+              throw error;
+            }
+          });
+        });
+      });
+    });
+  });
+}
+
+function exerciseTrackerTests(url) {
+  describe('FCC tests', async function() {
+    describe('API and Microservices Projects', async function() {
+      describe('Exercise Tracker Microservice', async function() {
+        describe('URL tests', async function() {
+          it('project should be yours', async function() {
+            try {
+              const fccURL = /.*\/exercise-tracker\.freecodecamp\.rocks/;
+              expect(url).to.not.match(fccURL, 'Users should create their own project.');
+            } catch (error) {
+              console.log(error);
+              throw error;
+            }
+          });
+        });
+      });
+    });
+  });
+}
+
+function fileMetadataTests(url) {
+  describe('FCC tests', async function() {
+    describe('API and Microservices Projects', async function() {
+      describe('Exercise Tracker Microservice', async function() {
+        describe('URL tests', async function() {
+          it('project should be yours', async function() {
+            try {
+              const fccURL = /.*\/exercise-tracker\.freecodecamp\.rocks/;
+              expect(url).to.not.match(fccURL, 'Users should create their own project.');
+            } catch (error) {
+              console.log(error);
+              throw error;
+            }
+          });
+        });
+      });
+    });
+  });
+}
+
+// Now that everything has been parsed, add the click events for the
+// buttons.
+(function addClickEvents() {
+  document
+    .getElementById('testControlsRunTests')
+    .addEventListener('click', runTests);
+
+  document
+    .getElementById('testControlsTestResults')
+    .addEventListener('click', toggleResultsVisibility);
+})();
