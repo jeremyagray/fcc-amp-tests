@@ -13,7 +13,18 @@ Download the script bundle, and include it in a simple HTML page.
 
 ## Usage
 
-Select the correct project from the drop-down, enter a correct URL, and click "Run Tests."  Click "Test Results" to see your results, if necessary.
+Select the correct project from the drop-down, enter a correct URL, and click "Run Tests."  Click "Test Results" to see your results, if necessary.  The URL must match the protocol, FQDN, and port of your API exactly to work.  For example, if you are testing an HTTP server on localhost running on port 3000, your URL should be `http://localhost:3000`.  Additionally, you should configure CORS in your app to all this script or fCC to test your app:
+
+```js
+const cors = require('cors');
+
+// Use CORS.
+app.use(cors({
+  origin: '*',
+  optionSuccessStatus: 200
+}));
+
+```
 
 ## Copyright and License
 
@@ -53,11 +64,11 @@ Jeremy A Gray <jeremy.a.gray@gmail.com>
 - [x] Read and implement mocha.css.
 - [x] Learn to import and webpack mocha, chai, chai-http, and
    chai-datetime in ES6 modules.
-- [ ] Implement FCC-like hamburger hider.
+- [x] Implement FCC-like hamburger hider.
 - [x] Implement FCC-like control interface.
 - [x] Grab URL from page to use as API base.
 - [x] Implement hidden mocha div.
-- [ ] Get reusable mocha object.
+- [ ] Get reusable mocha object for repeated test runs.
 - [ ] Customize output as desired.
 - [ ] Add FCC URL shortener tests.
 - [ ] Add FCC exercise tracker tests.
@@ -68,4 +79,4 @@ Jeremy A Gray <jeremy.a.gray@gmail.com>
 - [ ] Display actual/expected responses for FCC exercise tracker tests.
 - [ ] Display actual/expected responses for FCC file metadata tests.
 - [ ] Display actual/expected responses for FCC header parser tests.
-- [ ] Display actual/expected responses for FCC timestamp tests.
+- [x] Display actual/expected responses for FCC timestamp tests.
