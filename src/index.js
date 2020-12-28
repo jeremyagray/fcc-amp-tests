@@ -93,7 +93,6 @@ function runTests() {
 function toggleResultsVisibility() {
   // Make the results div visible, if it exists.
   if (document.getElementById('mocha') !== null) {
-    console.log(document.getElementById('mocha').style.visibility);
     if (document.getElementById('mocha').style.visibility === 'visible') {
       document.getElementById('mocha').style.visibility = 'hidden';
     } else {
@@ -110,6 +109,9 @@ function timestampTests(url) {
           it('project should be yours', async function() {
             try {
               const fccURL = /.*\/timestamp-microservice\.freecodecamp\.rocks/;
+              console.log(`actual:  ${url}`);
+              console.log(`expected:  ${fccURL}`);
+              console.log('URLs should not match.');
               expect(url).to.not.match(fccURL, 'Users should create their own project.');
             } catch (error) {
               console.log(error);
@@ -125,6 +127,15 @@ function timestampTests(url) {
 
               let response = await chai.request(url)
                 .get('/api/timestamp');
+
+              const actual = response.body;
+              const expected = {
+                'unix': now.valueOf(),
+                'utc': now.toUTCString()
+              };
+              console.log(`actual:  ${JSON.stringify(actual, null, 2)}`);
+              console.log(`expected:  ${JSON.stringify(expected, null, 2)}`);
+              console.log('Time JSONs should be within 1 s of each other.');
 
               expect(response).to.have.status(200);
               expect(response).to.be.json;
@@ -150,6 +161,15 @@ function timestampTests(url) {
 
               let response = await chai.request(url)
                 .get('/api/timestamp');
+
+              const actual = response.body;
+              const expected = {
+                'unix': now.valueOf(),
+                'utc': now.toUTCString()
+              };
+              console.log(`actual:  ${JSON.stringify(actual, null, 2)}`);
+              console.log(`expected:  ${JSON.stringify(expected, null, 2)}`);
+              console.log('Time JSONs should be within 1 s of each other.');
 
               expect(response).to.have.status(200);
               expect(response).to.be.json;
@@ -177,6 +197,14 @@ function timestampTests(url) {
                 let response = await chai.request(url)
                   .get('/api/timestamp/this-is-not-a-data');
 
+                const actual = response.body;
+                const expected = {
+                  'error': 'Invalid Date'
+                };
+                console.log(`actual:  ${JSON.stringify(actual, null, 2)}`);
+                console.log(`expected:  ${JSON.stringify(expected, null, 2)}`);
+                console.log('Error responses should match.');
+
                 // FCC tests fail on status 400, but really should
                 // require a status, and it probably should be 400.
                 // expect(response).to.have.status(400);
@@ -201,6 +229,15 @@ function timestampTests(url) {
                 let response = await chai.request(url)
                   .get(`/api/timestamp/${date}`);
 
+                const actual = response.body;
+                const expected = {
+                  'unix': dateObj.valueOf(),
+                  'utc': dateObj.toUTCString()
+                };
+                console.log(`actual:  ${JSON.stringify(actual, null, 2)}`);
+                console.log(`expected:  ${JSON.stringify(expected, null, 2)}`);
+                console.log('Time JSONs should be within 1 s of each other.');
+
                 expect(response).to.have.status(200);
                 expect(response).to.be.json;
                 expect(response.body).to.be.a('object');
@@ -223,6 +260,15 @@ function timestampTests(url) {
 
                 let response = await chai.request(url)
                   .get(`/api/timestamp/${date}`);
+
+                const actual = response.body;
+                const expected = {
+                  'unix': dateObj.valueOf(),
+                  'utc': dateObj.toUTCString()
+                };
+                console.log(`actual:  ${JSON.stringify(actual, null, 2)}`);
+                console.log(`expected:  ${JSON.stringify(expected, null, 2)}`);
+                console.log('Time JSONs should be within 1 s of each other.');
 
                 expect(response).to.have.status(200);
                 expect(response).to.be.json;
@@ -254,6 +300,15 @@ function timestampTests(url) {
                 let response = await chai.request(url)
                   .get(`/api/timestamp/${dateString}`);
 
+                const actual = response.body;
+                const expected = {
+                  'unix': dateObject.valueOf(),
+                  'utc': dateObject.toUTCString()
+                };
+                console.log(`actual:  ${JSON.stringify(actual, null, 2)}`);
+                console.log(`expected:  ${JSON.stringify(expected, null, 2)}`);
+                console.log('Time JSONs should be within the timezone offset of each other.');
+
                 expect(response).to.have.status(200);
                 expect(response).to.be.json;
                 expect(response.body).to.be.a('object');
@@ -269,16 +324,16 @@ function timestampTests(url) {
                 const unixDate = new Date(response.body.unix);
                 const utcDate = new Date(response.body.utc);
 
-                console.log(`dateString: ${dateString}`);
-                console.log(`dateObject: ${dateObject}`);
-                console.log(`utcString: ${utcString}`);
-                console.log(`utcObject: ${utcObject}`);
-                console.log(`unix: ${response.body.unix}`);
-                console.log(`unixObject: ${unixDate}`);
-                console.log(`unix diff: ${Math.abs(dateObject.valueOf() - unixDate.valueOf()) / 1000}`);
-                console.log(`utc: ${response.body.utc}`);
-                console.log(`utcObject: ${utcDate}`);
-                console.log(`utc diff: ${Math.abs(dateObject.valueOf() - utcDate.valueOf()) / 1000}`);
+                // console.log(`dateString: ${dateString}`);
+                // console.log(`dateObject: ${dateObject}`);
+                // console.log(`utcString: ${utcString}`);
+                // console.log(`utcObject: ${utcObject}`);
+                // console.log(`unix: ${response.body.unix}`);
+                // console.log(`unixObject: ${unixDate}`);
+                // console.log(`unix diff: ${Math.abs(dateObject.valueOf() - unixDate.valueOf()) / 1000}`);
+                // console.log(`utc: ${response.body.utc}`);
+                // console.log(`utcObject: ${utcDate}`);
+                // console.log(`utc diff: ${Math.abs(dateObject.valueOf() - utcDate.valueOf()) / 1000}`);
 
                 expect(unixDate).to.be.closeToTime(dateObject, offset + 5, `${unixDate} should be equal to ${dateObject}, within the timezone offset ${offset}.`);
                 expect(utcDate).to.be.closeToTime(dateObject, offset + 5, `${utcDate} should be equal to ${dateObject}, within the timezone offset ${offset}.`);
@@ -296,6 +351,15 @@ function timestampTests(url) {
 
                 let response = await chai.request(url)
                   .get(`/api/timestamp/${unix}`);
+
+                const actual = response.body;
+                const expected = {
+                  'unix': goodDate.valueOf(),
+                  'utc': goodDate.toUTCString()
+                };
+                console.log(`actual:  ${JSON.stringify(actual, null, 2)}`);
+                console.log(`expected:  ${JSON.stringify(expected, null, 2)}`);
+                console.log('Time JSONs should be within 1 s of each other.');
 
                 expect(response).to.have.status(200);
                 expect(response).to.be.json;
