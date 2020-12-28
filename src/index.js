@@ -80,10 +80,11 @@ function runTests() {
   // Page location for API calls.
   // const url = 'http://localhost:3000';
   const url = document
-        .getElementById('testControlsSelectProjectFormUrlEntry')
-        .value;
+    .getElementById('testControlsSelectProjectFormUrlEntry')
+    .value;
 
   // Define tests for selected project.
+  // eslint-disable-next-line security/detect-object-injection
   tests[project](url);
 
   // Run tests.
@@ -294,8 +295,8 @@ function timestampTests(url) {
                 // Get offset in seconds.
                 const offset = dateObject.getTimezoneOffset() * 60;
 
-                const utcString = '05 October 2011 GMT';
-                const utcObject = new Date(dateString);
+                // const utcString = '05 October 2011 GMT';
+                // const utcObject = new Date(dateString);
 
                 let response = await chai.request(url)
                   .get(`/api/timestamp/${dateString}`);
