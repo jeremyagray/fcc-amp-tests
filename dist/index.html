@@ -4,9 +4,6 @@
     <meta charset="utf-8" />
     <title>FCC AMP Testing Bundle</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="mocha.css" type="text/css" />
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" type="text/css" />
-    <link rel="stylesheet" href="style.css" type="text/css" />
   </head>
   <body>
     <div class="testControls zindex-fixed" id="testControlsHamburger">
@@ -17,9 +14,10 @@
     <div class="testControls container zindex-dropdown" id="testControls">
 
       <div class="testControls row align-items-center justify-content-center" id="testControlsSelectProjectFormLabelRow">
-	<label class="testControls" id="testControlsSelectProjectFormLabel" for="testControlsSelectProjectFormSelect">Select Project:</label>
+	<label class="testControls" id="testControlsSelectProjectFormLabel" for="testControlsSelectProjectFormSelect">Project:</label>
       </div>
-      <div class="testControls row align-items-center justify-content-center p-2" id="testControlsSelectProjectFormLabelForm">
+
+      <div class="testControls row align-items-center justify-content-center p-2" id="testControlsSelectProjectFormSelectRow">
 	<select class="testControls" name="testControlsSelectProjectFormSelect" id="testControlsSelectProjectFormSelect">
 	  <option value="timestamp">Timestamp</option>
 	  <option value="headerParser">Header Parser</option>
@@ -27,6 +25,18 @@
 	  <option value="exerciseTracker">Exercise Tracker</option>
 	  <option value="fileMetadata">File Metadata</option>
 	</select>
+      </div>
+
+      <div class="testControls row align-items-center justify-content-center" id="testControlsSelectProjectUrlLabelRow">
+	<label class="testControls" id="testControlsSelectProjectUrlLabel" for="testControlsSelectProjectFormUrlEntry">URL:</label>
+      </div>
+
+      <div class="testControls row align-items-center justify-content-center p-2" id="testControlsSelectProjectFormUrlEntryRow">
+	<input type="url"
+	       name="testControlsSelectProjectFormUrlEntry"
+	       id="testControlsSelectProjectFormUrlEntry"
+	       placeholder="https://your-live-project.repl.it"
+	       required>
       </div>
 
       <div class="testControls row align-items-center justify-content-center p-2" id="testControlsRunner">

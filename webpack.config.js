@@ -6,8 +6,22 @@ const webpack = require('webpack');
 module.exports = {
   'devServer': {
     'contentBase': './dist',
+    'headers': {
+      'Access-Control-Allow-Origin': '*'
+    }
   },
   'entry': './src/index.js',
+  'module': {
+    'rules': [
+      {
+        'test': /\.css$/,
+        'use': [
+          'style-loader',
+          'css-loader'
+        ]
+      }
+    ]
+  },
   'output': {
     'filename': 'main.js',
     'path': path.resolve(__dirname, 'dist'),

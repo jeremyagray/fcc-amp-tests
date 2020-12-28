@@ -1,5 +1,22 @@
+/* SPDX-License-Identifier: MIT
+ *
+ * Copyright 2020 Jeremy A Gray <jeremy.a.gray@gmail.com>.
+ */
+
+'use strict';
+
+// Bootstrap.
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+// CSS.
+import './style.css';
+import 'mocha/mocha.css';
+
 // Use mocha for running tests.
-import {mocha} from 'mocha';
+// import {mocha} from 'mocha';
+// import '../node_modules/mocha/browser-entry.js';
+import 'mocha/browser-entry';
 // import {Mocha} from 'mocha';
 // import 'mocha';
 
@@ -61,8 +78,10 @@ function runTests() {
   const project = projectSelect.options[projectSelect.selectedIndex].value;
 
   // Page location for API calls.
-  // const url = window.location.href;
-  const url = 'http://localhost:3000';
+  // const url = 'http://localhost:3000';
+  const url = document
+        .getElementById('testControlsSelectProjectFormUrlEntry')
+        .value;
 
   // Define tests for selected project.
   tests[project](url);
